@@ -98,6 +98,15 @@ export default function Navbar() {
             </Link>
           ))}
 
+          <a
+            href="https://t.me/yourtelegramchannel" // Replace with actual link
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gradient-to-r from-[#0088cc] to-[#0077b5] text-white px-6 py-2 rounded-full hover:from-[#0077b5] hover:to-[#005885] transition-all duration-300 hover:scale-105 shadow-lg"
+          >
+            Join Telegram
+          </a>
+
           {!user ? (
             <Link
               href="/login"
@@ -161,6 +170,16 @@ export default function Navbar() {
                 {item.name}
               </Link>
             ))}
+
+            <a
+              href="https://t.me/yourtelegramchannel"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gradient-to-r from-[#0088cc] to-[#0077b5] text-white px-6 py-3 rounded-full text-center hover:from-[#0077b5] hover:to-[#005885] transition-all duration-300"
+              onClick={() => setMenuOpen(false)}
+            >
+              Join Telegram
+            </a>
             
             {!user ? (
               <Link

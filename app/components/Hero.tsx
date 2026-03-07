@@ -14,9 +14,7 @@ export default function Hero() {
   const imageRef = useRef(null);
   const blob1Ref = useRef(null);
   const blob2Ref = useRef(null);
-  const code1Ref = useRef(null);
-  const code2Ref = useRef(null);
-  const code3Ref = useRef(null);
+  const keywordsRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -26,27 +24,21 @@ export default function Hero() {
       tl.from(headingRef.current, { y: 80, opacity: 0, duration: 1 })
         .from(textRef.current, { y: 40, opacity: 0, duration: 0.8 }, "-=0.6")
         .from(buttonRef.current, { y: 30, opacity: 0, duration: 0.6 }, "-=0.5")
-        .from(imageRef.current, { x: 120, opacity: 0, duration: 1 }, "-=1");
+        .from(imageRef.current, { x: 120, opacity: 0, duration: 1 }, "-=1")
+        .from(keywordsRef.current, { opacity: 0, duration: 0.8 }, "-=0.5");
 
-      gsap.to([code1Ref.current, blob1Ref.current], {
+      gsap.to([blob1Ref.current], {
         y: 20,
         repeat: -1,
         yoyo: true,
         duration: 3,
       });
 
-      gsap.to([code2Ref.current, blob2Ref.current], {
+      gsap.to([blob2Ref.current], {
         y: -20,
         repeat: -1,
         yoyo: true,
         duration: 4,
-      });
-
-      gsap.to(code3Ref.current, {
-        y: -10,
-        repeat: -1,
-        yoyo: true,
-        duration: 3.5,
       });
 
     }, sectionRef);
@@ -116,24 +108,25 @@ export default function Hero() {
         </div>
 
         {/* RIGHT SIDE IMAGE */}
-        <div className="relative flex justify-center items-center">
+        <div className="relative flex flex-col justify-center items-center">
 
           {/* Soft Glow */}
           <div className="absolute w-80 h-80 md:w-96 md:h-96 bg-[#F4A261] opacity-20 rounded-full blur-3xl -z-10"></div>
 
-          {/* Floating Code Elements */}
+          {/* Premium Keywords */}
           <div
-            ref={code1Ref}
-            className="absolute -top-4 md:-top-8 left-2 md:left-6 bg-white/70 backdrop-blur-md px-3 md:px-4 py-2 rounded-xl shadow-lg text-xs md:text-sm font-mono"
+            ref={keywordsRef}
+            className="mb-6 md:mb-8 text-center space-y-2"
           >
-            {"<code />"}
-          </div>
-
-          <div
-            ref={code2Ref}
-            className="absolute bottom-4 md:bottom-8 -right-2 md:-right-6 bg-white/70 backdrop-blur-md px-3 md:px-4 py-2 rounded-xl shadow-lg text-xs md:text-sm font-mono"
-          >
-            {"{ logic }"}
+            <p className="text-sm md:text-base text-[#F4A261] font-semibold tracking-wider uppercase">
+              Computer Science Faculty
+            </p>
+            <p className="text-xs md:text-sm text-[#5C5C5C] font-medium">
+              Educator | Researcher | Author | Mentor
+            </p>
+            <div className="flex justify-center gap-2 pt-2">
+              <div className="h-1 w-8 bg-[#F4A261] rounded-full"></div>
+            </div>
           </div>
 
           {/* Image (Static) */}

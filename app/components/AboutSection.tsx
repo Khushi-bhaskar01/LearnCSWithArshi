@@ -112,7 +112,7 @@ export default function AboutSection() {
             className="text-[#4A4A4A] leading-relaxed text-sm md:text-base space-y-3 md:space-y-4"
           >
             <p className="text-base md:text-lg lg:text-xl font-semibold text-[#d1894e]">
-              Education has always been at the heart of who I am.
+               Striving to be the kind of teacher I always wished I had.
             </p>
 
             <p>
@@ -137,7 +137,7 @@ export default function AboutSection() {
             {/* Stats */}
             <div className="flex flex-wrap gap-4 md:gap-8 pt-4 md:pt-6">
               <div>
-                <h3 className="text-xl md:text-2xl font-bold text-[#F4A261]">10+</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-[#F4A261]">5+</h3>
                 <p className="text-xs md:text-sm text-gray-600">Years Teaching</p>
               </div>
 

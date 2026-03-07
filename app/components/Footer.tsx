@@ -90,7 +90,9 @@ export default function Footer() {
       </div>
 
       <div className="text-center mt-6 md:mt-10 text-xs md:text-sm text-gray-600">
-        © {new Date().getFullYear()} Dr Arshi Husain. All rights reserved.
+       Made with ❤️ By Arshi Husain | &copy; {new Date().getFullYear()} All rights reserved.
+       <br />
+       Designed and Developed by <a href="https://www.linkedin.com/in/khushi-bhaskar-b00586324/" className="text-[#5f442e] hover:underline">Khushi Bhaskar [DevSource]</a>
       </div>
     </footer>
   );

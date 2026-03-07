@@ -64,32 +64,115 @@ export default function AboutMam() {
       title: "Academic Foundation",
       content:
         "Dr. Arshi Husain built a strong foundation in Computer Science through years of structured academic excellence and dedication.",
-      image: "/mam.jpeg",
+      image: "/academic.jpeg",
     },
     {
-      title: "Higher Studies",
-      content:
-        "Her advanced studies include postgraduate and doctoral research focused on modern computing methodologies and system design.",
-      image: "/about1.jpeg",
+      title: "Education",
+      content: (
+        <div className="space-y-3">
+          <div className="flex items-start gap-3">
+            <div className="w-2 h-2 bg-[#F4A261] rounded-full mt-2 flex-shrink-0"></div>
+            <div>
+              <p className="font-semibold text-[#2D3748]">Qualified UGC NET (CSE)</p>
+              <p className="text-sm text-[#5C5C5C]">University Grants Commission National Eligibility Test</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="w-2 h-2 bg-[#F4A261] rounded-full mt-2 flex-shrink-0"></div>
+            <div>
+              <p className="font-semibold text-[#2D3748]">Ph.D., Computer Science</p>
+              <p className="text-sm text-[#5C5C5C]">Guru Gobind Singh Indraprastha University (GGSIPU)</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="w-2 h-2 bg-[#F4A261] rounded-full mt-2 flex-shrink-0"></div>
+            <div>
+              <p className="font-semibold text-[#2D3748]">M.Tech, Computer Science</p>
+              <p className="text-sm text-[#5C5C5C]">Centre for Development of Advanced Computing (C-DAC), Noida</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="w-2 h-2 bg-[#F4A261] rounded-full mt-2 flex-shrink-0"></div>
+            <div>
+              <p className="font-semibold text-[#2D3748]">B.Tech, Information Technology</p>
+              <p className="text-sm text-[#5C5C5C]">Jamia Hamdard University</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="w-2 h-2 bg-[#F4A261] rounded-full mt-2 flex-shrink-0"></div>
+            <div>
+              <p className="font-semibold text-[#2D3748]">Schooling</p>
+              <p className="text-sm text-[#5C5C5C]">Cambridge School</p>
+            </div>
+          </div>
+        </div>
+      ),
+      image: "/education.jpeg",
     },
     {
       title: "Teaching Experience",
-      content:
-        "With over a decade of experience, she has mentored thousands of students in Data Structures, DBMS, OS, and core CS subjects.",
-      image: "/about2.jpeg",
+      content: (
+        <div className="space-y-4">
+          <p className="text-gray-600 leading-relaxed">
+            Currently serving in the Computer Science Department at Guru Gobind Singh Indraprastha University (GGSIPU).
+          </p>
+          <div className="space-y-2">
+            <p className="font-medium text-[#2D3748]">Previous Positions:</p>
+            <ul className="space-y-1 ml-4">
+              <li className="flex items-start gap-2">
+                <span className="text-[#F4A261] mt-1">•</span>
+                <span>Former faculty at Greater Noida Institute of Technology (GNIOT)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#F4A261] mt-1">•</span>
+                <span>Former faculty at IEC College of Engineering and Technology</span>
+              </li>
+            </ul>
+          </div>
+          <div className="space-y-2">
+            <p className="font-medium text-[#2D3748]">EdTech Experience:</p>
+            <ul className="space-y-1 ml-4">
+              <li className="flex items-start gap-2">
+                <span className="text-[#F4A261] mt-1">•</span>
+                <span>Formerly associated with Unacademy</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#F4A261] mt-1">•</span>
+                <span>Formerly associated with Knowledge Gate</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      ),
+      image: "/teaching.jpeg",
     },
     {
       title: "Research & Publications",
-      content:
-        "Her research contributions include academic papers, conferences, and innovative approaches to simplifying technical education.",
-      image: "/mam.jpeg",
+      content: (
+        <div className="space-y-4">
+          <p>
+            Research contributions include design patents and publications in international conferences and Scopus-indexed journals.
+          </p>
+          <p>
+            Additionally, she serves as a reviewer for research papers submitted to reputed academic journals and conferences.
+          </p>
+        </div>
+      ),
+      image: "/research.jpeg",
     },
+
     {
       title: "Vision & Mentorship",
-      content:
-        "Her mission is to remove fear from technical subjects and empower every learner with confidence and clarity.",
+      content: (
+        <div className="space-y-4">
+          <p>
+            The mission is to simplify core computer science concepts, inspire students to learn with confidence, guide them in their career paths, and motivate them to achieve their full potential.
+          </p>
+        </div>
+      ),
       image: "/about4.jpeg",
     },
+
   ];
 
   return (
@@ -102,6 +185,10 @@ export default function AboutMam() {
         <div className="absolute inset-0 bg-black/50" />
         <h1 className="relative text-white text-3xl md:text-4xl lg:text-6xl font-black text-center px-4">
           Dr. Arshi Husain
+          <br />
+          <span className="text-white/90 text-base md:text-lg font-medium italic block mt-2">
+            Assistant Professor, GGSIPU
+          </span>
         </h1>
       </div>
 
@@ -131,9 +218,9 @@ export default function AboutMam() {
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">
                 {section.title}
               </h2>
-              <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+              <div className="text-gray-600 leading-relaxed text-sm md:text-base">
                 {section.content}
-              </p>
+              </div>
             </div>
           </div>
         </div>
