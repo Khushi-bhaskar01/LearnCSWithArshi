@@ -35,6 +35,9 @@ export default function NotesPage() {
   const [loadingId, setLoadingId] = useState<string | null>(null);
   const [pdfLoading, setPdfLoading] = useState(false);
 
+  // detect mobile devices to choose embedding strategy
+  const [isMobile, setIsMobile] = useState(false);
+
   const [purchasedNotes, setPurchasedNotes] = useState<string[]>([]);
   const [user, setUser] = useState<any>(null);
 
@@ -46,6 +49,11 @@ export default function NotesPage() {
 
     document.body.appendChild(script);
 
+  }, []);
+
+  /* detect mobile user agent */
+  useEffect(() => {
+    setIsMobile(/Mobi|Android/i.test(navigator.userAgent));
   }, []);
 
   /* AUTH STATE */
@@ -303,17 +311,31 @@ export default function NotesPage() {
                 </div>
               </div>
             )}
-            <iframe
-              src={pdfUrl + "#zoom=100&toolbar=0&navpanes=0"}
-              className="pdf-iframe w-full border-0"
-              style={{
-                height: 'calc(100vh - 350px)',
-                minHeight: '500px',
-                maxHeight: '900px'
-              }}
-              allowFullScreen
-              onLoad={() => setPdfLoading(false)}
-            />
+            {/* choose embed for mobile so it stays in-page instead of opening a new tab */}
+            {isMobile ? (
+              <embed
+                src={pdfUrl + "#zoom=100&toolbar=0&navpanes=0"}
+                type="application/pdf"
+                className="pdf-iframe w-full border-0"
+                style={{
+                  height: 'calc(100vh - 350px)',
+                  minHeight: '500px',
+                  maxHeight: '900px'
+                }}
+              />
+            ) : (
+              <iframe
+                src={pdfUrl + "#zoom=100&toolbar=0&navpanes=0"}
+                className="pdf-iframe w-full border-0"
+                style={{
+                  height: 'calc(100vh - 350px)',
+                  minHeight: '500px',
+                  maxHeight: '900px'
+                }}
+                allowFullScreen
+                onLoad={() => setPdfLoading(false)}
+              />
+            )}
           </div>
 
           {/* Mobile Instructions */}
@@ -326,7 +348,7 @@ export default function NotesPage() {
           {/* Desktop Instructions */}
           <div className="mt-4 p-3 bg-green-50 rounded-lg border border-green-200 hidden md:block">
             <p className="text-sm text-green-800">
-              💡 <strong>Desktop Tips:</strong> Use zoom controls above or Ctrl+Scroll in the PDF. Right-click for browser zoom options.
+              💡 <strong>Desktop Tips:</strong> Use zoom controls above or Ctrl+Scroll in the PDF.
             </p>
           </div>
 
