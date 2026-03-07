@@ -99,7 +99,7 @@ export default function Navbar() {
           ))}
 
           <a
-            href="https://t.me/yourtelegramchannel" // Replace with actual link
+            href="https://t.me/+cZ9MtCUBvZEyNGU1" // Replace with actual link
             target="_blank"
             rel="noopener noreferrer"
             className="bg-gradient-to-r from-[#0088cc] to-[#0077b5] text-white px-6 py-2 rounded-full hover:from-[#0077b5] hover:to-[#005885] transition-all duration-300 hover:scale-105 shadow-lg"
