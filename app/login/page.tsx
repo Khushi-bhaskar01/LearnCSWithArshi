@@ -49,16 +49,16 @@ export default function LoginPage() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-[#FFF4EC]">
-      <div className="bg-white p-10 rounded-3xl shadow-xl w-full max-w-md text-center">
+    <section className="min-h-screen flex items-center justify-center bg-[#FFF4EC] px-4">
+      <div className="bg-white p-6 md:p-10 rounded-2xl md:rounded-3xl shadow-xl w-full max-w-md text-center">
         
-        <h2 className="text-2xl font-bold mb-8">
+        <h2 className="text-xl md:text-2xl font-bold mb-6 md:mb-8">
           Continue to Your Account
         </h2>
 
         <button
           onClick={handleGoogleLogin}
-          className="w-full bg-black text-white py-3 rounded-full hover:scale-105 transition"
+          className="w-full bg-black text-white py-3 rounded-full hover:scale-105 transition text-sm md:text-base"
         >
           Continue with Google
         </button>

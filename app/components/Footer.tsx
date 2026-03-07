@@ -35,13 +35,13 @@ export default function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="relative bg-gradient-to-br from-[#d7a885] to-[#c2a997] pt-20 pb-10 px-6 md:px-16"
+      className="relative bg-gradient-to-br from-[#d7a885] to-[#c2a997] pt-16 md:pt-20 pb-8 md:pb-10 px-4 md:px-16"
     >
-      <div className="max-w-6xl mx-auto bg-white/60 backdrop-blur-xl rounded-3xl shadow-xl border border-white/40 p-10 md:p-14">
-        <div className="grid md:grid-cols-3 gap-10">
+      <div className="max-w-6xl mx-auto bg-white/60 backdrop-blur-xl rounded-3xl shadow-xl border border-white/40 p-6 md:p-10 lg:p-14">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
 
           <div>
-            <h3 className="text-xl font-semibold mb-4 text-[#F4A261]">
+            <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-[#F4A261]">
               Dr Arshi Husain
             </h3>
             <p className="text-sm text-gray-700 leading-relaxed">
@@ -52,7 +52,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <h4 className="font-semibold mb-3 md:mb-4 text-sm md:text-base">Quick Links</h4>
             <div className="flex flex-col gap-2 text-sm">
               <Link href="/about" className="hover:text-[#F4A261] transition">
                 About
@@ -70,16 +70,16 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Contact</h4>
+            <h4 className="font-semibold mb-3 md:mb-4 text-sm md:text-base">Contact</h4>
             <div className="text-sm text-gray-700 space-y-2">
               <p>Email: arshi@example.com</p>
               <p>Location: India</p>
             </div>
 
-            <div className="flex gap-4 mt-4">
+            <div className="flex gap-3 md:gap-4 mt-3 md:mt-4">
               <a
                 href="#"
-                className="bg-[#F4A261] text-white px-4 py-2 rounded-full text-xs hover:bg-[#E76F51] transition"
+                className="bg-[#F4A261] text-white px-3 md:px-4 py-2 rounded-full text-xs hover:bg-[#E76F51] transition"
               >
                 YouTube
               </a>
@@ -89,7 +89,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="text-center mt-10 text-sm text-gray-600">
+      <div className="text-center mt-6 md:mt-10 text-xs md:text-sm text-gray-600">
         © {new Date().getFullYear()} Dr Arshi Husain. All rights reserved.
       </div>
     </footer>

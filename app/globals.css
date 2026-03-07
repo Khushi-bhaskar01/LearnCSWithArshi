@@ -5,3 +5,46 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+/* PDF Viewer Improvements */
+.pdf-viewer-container iframe {
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+}
+
+/* Mobile PDF optimizations */
+@media (max-width: 768px) {
+  .pdf-viewer-container iframe {
+    height: calc(100vh - 400px) !important;
+    min-height: 400px;
+  }
+}
+
+/* Desktop PDF optimizations */
+@media (min-width: 769px) {
+  .pdf-viewer-container iframe {
+    height: calc(100vh - 350px) !important;
+    min-height: 600px;
+    max-height: 900px;
+  }
+}
+
+/* Scrollbar styling for PDF container */
+.pdf-viewer-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.pdf-viewer-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.pdf-viewer-container::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.pdf-viewer-container::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

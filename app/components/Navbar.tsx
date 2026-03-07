@@ -70,7 +70,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    // { name: "Courses", href: "/courses" },
+    { name: "Courses", href: "/courses" },
     { name: "Notes", href: "/notes" },
     { name: "YouTube", href: "/youtube" },
   ];
@@ -148,13 +148,59 @@ export default function Navbar() {
       {menuOpen && (
         <div
           ref={mobileMenuRef}
-          className="fixed top-24 left-0 right-0 mx-auto w-[92%] bg-white p-6 rounded-2xl"
+          className="fixed top-24 left-0 right-0 mx-auto w-[92%] bg-white p-6 rounded-2xl shadow-xl z-40"
         >
-          {navLinks.map((item) => (
-            <Link key={item.name} href={item.href}>
-              {item.name}
-            </Link>
-          ))}
+          <div className="flex flex-col gap-4">
+            {navLinks.map((item) => (
+              <Link 
+                key={item.name} 
+                href={item.href}
+                className="text-lg py-2 border-b border-gray-100 hover:text-[#F4A261] transition-colors"
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+            
+            {!user ? (
+              <Link
+                href="/login"
+                className="bg-[#F4A261] text-white px-6 py-3 rounded-full text-center mt-4 hover:bg-[#E76F51] transition-colors"
+                onClick={() => setMenuOpen(false)}
+              >
+                Login
+              </Link>
+            ) : (
+              <div className="mt-4 space-y-2">
+                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+                  <div className="w-10 h-10 rounded-full bg-[#F4A261] text-white flex items-center justify-center font-semibold">
+                    {user.email?.charAt(0).toUpperCase()}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium truncate">{user.email}</p>
+                  </div>
+                </div>
+                
+                <Link
+                  href="/profile"
+                  className="block w-full text-left px-4 py-3 hover:bg-gray-100 rounded-xl transition-colors"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Profile
+                </Link>
+
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    setMenuOpen(false);
+                  }}
+                  className="w-full text-left px-4 py-3 text-red-500 hover:bg-gray-100 rounded-xl transition-colors"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </>

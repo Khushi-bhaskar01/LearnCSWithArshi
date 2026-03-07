@@ -56,25 +56,25 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center pt-28 md:pt-36 px-6 md:px-16 overflow-hidden bg-linear-to-br from-[#FFF4EC] to-[#FFE8D6]">
+    <section className="relative min-h-screen flex items-center pt-20 md:pt-36 px-4 md:px-16 overflow-hidden bg-linear-to-br from-[#FFF4EC] to-[#FFE8D6]">
 
       {/* Floating Blobs */}
       <div
         ref={blob1Ref}
-        className="absolute top-10 left-10 w-64 h-64 bg-[#F4A261] opacity-20 rounded-full blur-3xl"
+        className="absolute top-10 left-4 md:left-10 w-48 h-48 md:w-64 md:h-64 bg-[#F4A261] opacity-20 rounded-full blur-3xl"
       />
       <div
         ref={blob2Ref}
-        className="absolute bottom-20 right-10 w-72 h-72 bg-[#E76F51] opacity-20 rounded-full blur-3xl"
+        className="absolute bottom-20 right-4 md:right-10 w-56 h-56 md:w-72 md:h-72 bg-[#E76F51] opacity-20 rounded-full blur-3xl"
       />
 
-      <div className="grid md:grid-cols-2 gap-10 items-center w-full max-w-7xl mx-auto relative z-10">
+      <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-center w-full max-w-7xl mx-auto relative z-10">
 
         {/* LEFT SIDE */}
         <div>
           <h1
             ref={headingRef}
-            className="text-4xl md:text-5xl font-bold leading-tight"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
           >
             Learn CS with{" "}
             <span className="text-[#F4A261]">
@@ -91,7 +91,7 @@ export default function Hero() {
 
           <p
             ref={textRef}
-            className="mt-6 text-lg text-[#5C5C5C]"
+            className="mt-4 md:mt-6 text-base md:text-lg text-[#5C5C5C] leading-relaxed"
           >
             Structured notes, easy explanations and curated video lectures
             designed to help you understand concepts clearly and succeed with confidence.
@@ -99,16 +99,16 @@ export default function Hero() {
 
           <div
             ref={buttonRef}
-            className="mt-8 flex gap-4"
+            className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 md:gap-4"
           >
             <Link href="/about">
-              <button className="bg-[#F4A261] text-white px-6 py-3 rounded-full shadow-lg hover:bg-[#E76F51] transition duration-300 hover:scale-105">
+              <button className="bg-[#F4A261] text-white px-6 py-3 rounded-full shadow-lg hover:bg-[#E76F51] transition duration-300 hover:scale-105 text-sm md:text-base">
                 About Me
               </button>
             </Link>
 
             <Link href="/notes">
-              <button className="border border-[#F4A261] text-[#F4A261] px-6 py-3 rounded-full hover:bg-white transition duration-300 hover:scale-105">
+              <button className="border border-[#F4A261] text-[#F4A261] px-6 py-3 rounded-full hover:bg-white transition duration-300 hover:scale-105 text-sm md:text-base">
                 View Notes
               </button>
             </Link>
@@ -119,19 +119,19 @@ export default function Hero() {
         <div className="relative flex justify-center items-center">
 
           {/* Soft Glow */}
-          <div className="absolute w-96 h-96 bg-[#F4A261] opacity-20 rounded-full blur-3xl -z-10"></div>
+          <div className="absolute w-80 h-80 md:w-96 md:h-96 bg-[#F4A261] opacity-20 rounded-full blur-3xl -z-10"></div>
 
           {/* Floating Code Elements */}
           <div
             ref={code1Ref}
-            className="absolute -top-8 left-6 bg-white/70 backdrop-blur-md px-4 py-2 rounded-xl shadow-lg text-sm font-mono"
+            className="absolute -top-4 md:-top-8 left-2 md:left-6 bg-white/70 backdrop-blur-md px-3 md:px-4 py-2 rounded-xl shadow-lg text-xs md:text-sm font-mono"
           >
             {"<code />"}
           </div>
 
           <div
             ref={code2Ref}
-            className="absolute bottom-8 -right-6 bg-white/70 backdrop-blur-md px-4 py-2 rounded-xl shadow-lg text-sm font-mono"
+            className="absolute bottom-4 md:bottom-8 -right-2 md:-right-6 bg-white/70 backdrop-blur-md px-3 md:px-4 py-2 rounded-xl shadow-lg text-xs md:text-sm font-mono"
           >
             {"{ logic }"}
           </div>
@@ -141,9 +141,9 @@ export default function Hero() {
             <Image
               src="/about2.jpeg"
               alt="Dr Arshi Husain"
-              width={400}
-              height={500}
-              className="rounded-3xl shadow-2xl object-cover"
+              width={350}
+              height={450}
+              className="rounded-3xl shadow-2xl object-cover w-full max-w-[280px] md:max-w-[400px] h-auto"
               priority
             />
           </div>

@@ -67,20 +67,20 @@ export default function YouTubePage() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen pt-32 pb-20 px-6 md:px-16 bg-gradient-to-br from-[#FFF4EC] to-[#FFE8D6]"
+      className="min-h-screen pt-24 md:pt-32 pb-16 md:pb-20 px-4 md:px-16 bg-gradient-to-br from-[#FFF4EC] to-[#FFE8D6]"
     >
         <Navbar />
-      <h1 className="text-4xl font-bold text-center mb-12">
+      <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">
         YouTube Playlists
       </h1>
 
       {/* FILTER BUTTONS */}
-      <div className="flex flex-wrap justify-center gap-4 mb-12">
+      <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-8 md:mb-12">
         {Object.keys(playlists).map((subject) => (
           <button
             key={subject}
             onClick={() => setActiveSubject(subject)}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300
+            className={`px-4 md:px-6 py-2 rounded-full text-sm font-medium transition-all duration-300
               ${
                 activeSubject === subject
                   ? "bg-gradient-to-r from-[#F4A261] to-[#E76F51] text-white shadow-lg"
@@ -95,24 +95,25 @@ export default function YouTubePage() {
       {/* PLAYLIST CARDS */}
       <div
         ref={cardsRef}
-        className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto"
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 max-w-6xl mx-auto"
       >
         {playlists[activeSubject].map((item, index) => (
           <div
             key={index}
-            className="yt-card bg-white/60 backdrop-blur-xl rounded-3xl shadow-xl border border-white/40 p-6"
+            className="yt-card bg-white/60 backdrop-blur-xl rounded-2xl md:rounded-3xl shadow-xl border border-white/40 p-4 md:p-6"
           >
-            <h2 className="text-lg font-semibold text-[#F4A261] mb-4">
+            <h2 className="text-base md:text-lg font-semibold text-[#F4A261] mb-3 md:mb-4">
               {item.title}
             </h2>
 
-            <div className="rounded-2xl overflow-hidden shadow-md">
+            <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-md">
               <iframe
                 width="100%"
-                height="315"
+                height="250"
                 src={`https://www.youtube.com/embed/videoseries?list=${item.embedId}`}
                 title={item.title}
                 allowFullScreen
+                className="w-full"
               ></iframe>
             </div>
           </div>

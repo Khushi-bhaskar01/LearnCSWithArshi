@@ -33,11 +33,11 @@ export default function NotesPage() {
   const [notes, setNotes] = useState<Note[]>([]);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [loadingId, setLoadingId] = useState<string | null>(null);
+  const [pdfLoading, setPdfLoading] = useState(false);
 
   const [purchasedNotes, setPurchasedNotes] = useState<string[]>([]);
   const [user, setUser] = useState<any>(null);
 
-  /* LOAD RAZORPAY */
   useEffect(() => {
 
     const script = document.createElement("script");
@@ -91,10 +91,10 @@ export default function NotesPage() {
 
         return {
           id: docItem.id,
-          name: d.name,
-          description: d.description,
-          price: d.price,
-          pdfUrl: d.pdfUrl
+          name: d.name || "No name",
+          description: d.description || "",
+          price: d.price || 0,
+          pdfUrl: d.pdfUrl || ""
         };
 
       });
@@ -182,11 +182,13 @@ export default function NotesPage() {
   const handlePreview = async (fileUrl: string, noteId: string) => {
 
     setLoadingId(noteId);
+    setPdfLoading(true);
 
     if (!user) {
 
       alert("Please login first");
       setLoadingId(null);
+      setPdfLoading(false);
       return;
 
     }
@@ -197,12 +199,14 @@ export default function NotesPage() {
 
       alert("Please purchase this note first");
       setLoadingId(null);
+      setPdfLoading(false);
       return;
 
     }
 
     setPdfUrl(fileUrl);
     setLoadingId(null);
+    setPdfLoading(false);
 
   };
 
@@ -210,11 +214,11 @@ export default function NotesPage() {
 
   return (
 
-    <div className="max-w-7xl mx-auto mt-30 px-6">
+    <div className="max-w-7xl mx-auto mt-24 md:mt-30 px-4 md:px-6">
 
       <Navbar />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-8 md:mt-10">
 
         {notes.map((note) => {
 
@@ -224,24 +228,24 @@ export default function NotesPage() {
 
             <div
               key={note.id}
-              className="bg-white p-6 rounded-2xl shadow-lg relative"
+              className="bg-white p-4 md:p-6 rounded-2xl shadow-lg relative"
             >
 
               {!isUnlocked && (
-                <div className="absolute top-4 right-4 text-xs bg-red-500 text-white px-2 py-1 rounded-full">
+                <div className="absolute top-3 right-3 md:top-4 md:right-4 text-xs bg-red-500 text-white px-2 py-1 rounded-full">
                   Locked
                 </div>
               )}
 
-              <h2 className="text-xl font-semibold mb-2">
+              <h2 className="text-lg md:text-xl font-semibold mb-2">
                 {note.name}
               </h2>
 
-              <p className="text-sm text-gray-600 mb-4">
-                {note.description}
+              <p className="text-sm text-gray-800 mb-3 md:mb-4 min-h-[3rem]">
+                {note.description || "No description available."}
               </p>
 
-              <p className="font-bold mb-4">
+              <p className="font-bold mb-3 md:mb-4 text-base md:text-lg">
                 ₹{note.price}
               </p>
 
@@ -251,7 +255,7 @@ export default function NotesPage() {
                     ? handlePreview(note.pdfUrl, note.id)
                     : handlePayment(note)
                 }
-                className={`w-full px-4 py-2 rounded-xl text-white ${
+                className={`w-full px-4 py-2 md:py-3 rounded-xl text-white text-sm md:text-base ${
                   isUnlocked
                     ? "bg-green-600 hover:bg-green-700"
                     : "bg-gradient-to-r from-[#F4A261] to-[#E76F51]"
@@ -276,14 +280,59 @@ export default function NotesPage() {
 
       {pdfUrl && (
 
-        <div className="mt-16">
+        <div className="mt-12 md:mt-16">
 
-          <iframe
-            src={pdfUrl + "#toolbar=0"}
-            width="100%"
-            height="700px"
-            className="rounded-xl shadow-xl"
-          />
+      {pdfUrl && (
+
+        <div className="mt-12 md:mt-16">
+
+          {/* PDF Title */}
+          <div className="mb-4">
+            <h3 className="text-lg md:text-xl font-semibold text-[#F4A261]">
+              PDF Preview
+            </h3>
+          </div>
+
+          {/* PDF Viewer Container */}
+          <div className="relative bg-white rounded-xl shadow-xl overflow-hidden pdf-viewer-container">
+            {pdfLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
+                <div className="text-center">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#F4A261] mx-auto mb-4"></div>
+                  <p className="text-gray-600">Loading PDF...</p>
+                </div>
+              </div>
+            )}
+            <iframe
+              src={pdfUrl + "#zoom=100&toolbar=0&navpanes=0"}
+              className="pdf-iframe w-full border-0"
+              style={{
+                height: 'calc(100vh - 350px)',
+                minHeight: '500px',
+                maxHeight: '900px'
+              }}
+              allowFullScreen
+              onLoad={() => setPdfLoading(false)}
+            />
+          </div>
+
+          {/* Mobile Instructions */}
+          <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200 md:hidden">
+            <p className="text-sm text-blue-800">
+              💡 <strong>Mobile Tips:</strong> Use zoom buttons above for better viewing. Pinch gestures may also work depending on your browser.
+            </p>
+          </div>
+
+          {/* Desktop Instructions */}
+          <div className="mt-4 p-3 bg-green-50 rounded-lg border border-green-200 hidden md:block">
+            <p className="text-sm text-green-800">
+              💡 <strong>Desktop Tips:</strong> Use zoom controls above or Ctrl+Scroll in the PDF. Right-click for browser zoom options.
+            </p>
+          </div>
+
+        </div>
+
+      )}
 
         </div>
 

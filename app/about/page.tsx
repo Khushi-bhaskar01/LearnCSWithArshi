@@ -100,7 +100,7 @@ export default function AboutMam() {
       <div className="relative min-h-screen flex items-center justify-center px-4">
         <Image src="/about1.jpeg" alt="Mam" fill className="object-cover" />
         <div className="absolute inset-0 bg-black/50" />
-        <h1 className="relative text-white text-4xl md:text-6xl font-black text-center">
+        <h1 className="relative text-white text-3xl md:text-4xl lg:text-6xl font-black text-center px-4">
           Dr. Arshi Husain
         </h1>
       </div>
@@ -112,12 +112,12 @@ export default function AboutMam() {
           ref={(el) => {
             if (el) stackRef.current[idx] = el;
           }}
-          className="h-screen flex items-center justify-center px-6"
+          className="min-h-screen flex items-center justify-center px-4 py-8"
         >
-          <div className="relative w-full max-w-6xl bg-white rounded-[3rem] shadow-2xl p-10 md:p-16 flex flex-col md:flex-row items-center gap-12">
+          <div className="relative w-full max-w-6xl bg-white rounded-2xl md:rounded-[3rem] shadow-2xl p-6 md:p-10 lg:p-16 flex flex-col md:flex-row items-center gap-6 md:gap-12">
 
             {/* IMAGE */}
-            <div className="relative w-full md:w-1/2 h-80 md:h-[400px] rounded-3xl overflow-hidden">
+            <div className="relative w-full md:w-1/2 h-64 md:h-80 lg:h-[400px] rounded-2xl md:rounded-3xl overflow-hidden">
               <Image
                 src={section.image}
                 alt={section.title}
@@ -128,10 +128,10 @@ export default function AboutMam() {
 
             {/* CONTENT */}
             <div className="md:w-1/2 text-center md:text-left">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">
                 {section.title}
               </h2>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed text-sm md:text-base">
                 {section.content}
               </p>
             </div>
