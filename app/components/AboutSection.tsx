@@ -65,7 +65,7 @@ export default function AboutSection() {
       <div className="relative max-w-[95%] md:max-w-[90%] mx-auto backdrop-blur-2xl bg-white/0 border border-white/40 shadow-[0_20px_60px_rgba(0,0,0,0.1)] rounded-3xl p-4 md:p-6 lg:p-8">
 
         <h2 className="text-center text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] mb-6 md:mb-8">
-          My <span className="text-[#F4A261]">Journey</span>
+          Her <span className="text-[#F4A261]">Journey</span>
         </h2>
 
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
@@ -112,27 +112,27 @@ export default function AboutSection() {
             className="text-[#4A4A4A] leading-relaxed text-sm md:text-base space-y-3 md:space-y-4"
           >
             <p className="text-base md:text-lg lg:text-xl font-semibold text-[#d1894e]">
-               Striving to be the kind of teacher I always wished I had.
-            </p>
+  Striving to be the kind of teacher her students always wished they had.
+</p>
 
-            <p>
-              Over the years, I have dedicated myself to simplifying complex
-              concepts and making learning a comfortable,
-              confidence-building experience. I believe clarity removes fear,
-              and when fear is removed, true understanding begins.
-            </p>
+<p>
+  Over the years, Dr. Arshi Husain has dedicated herself to simplifying
+  complex concepts and making learning a comfortable, confidence-building
+  experience. She believes that clarity removes fear, and when fear is
+  removed, true understanding begins.
+</p>
 
-            <p>
-              My journey has been shaped by countless interactions with
-              students guiding them patiently and helping them grow into
-              confident individuals who trust their own abilities.
-            </p>
+<p>
+  Her journey has been shaped by countless interactions with students,
+  patiently guiding them and helping them grow into confident individuals
+  who trust their own abilities.
+</p>
 
-            <p>
-              This platform reflects that commitment structured notes,
-              thoughtfully curated lectures, and a supportive learning
-              environment built on trust and growth.
-            </p>
+<p>
+  This platform reflects her commitment structured notes, thoughtfully
+  curated lectures, and a supportive learning environment built on trust,
+  clarity, and continuous growth.
+</p>
 
             {/* Stats */}
             <div className="flex flex-wrap gap-4 md:gap-8 pt-4 md:pt-6">

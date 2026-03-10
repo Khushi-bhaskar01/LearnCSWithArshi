@@ -27,7 +27,7 @@ export default function Footer() {
     }, footerRef);
 
     return () => {
-      ctx.revert();                 // 🔥 kill animations
+      ctx.revert();                 
       ScrollTrigger.refresh();     // 🔥 reset triggers
     };
   }, []);
@@ -72,13 +72,17 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-3 md:mb-4 text-sm md:text-base">Contact</h4>
             <div className="text-sm text-gray-700 space-y-2">
-              <p>Email: arshi@example.com</p>
+              <a href="mailto: arshihusaincs@gmail.com" className="hover:text-[#F4A261] transition">
+                arshihusaincs@gmail.com
+              </a>
               <p>Location: India</p>
             </div>
 
             <div className="flex gap-3 md:gap-4 mt-3 md:mt-4">
               <a
-                href="#"
+                href="https://www.youtube.com/@learncswitharshi"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-[#F4A261] text-white px-3 md:px-4 py-2 rounded-full text-xs hover:bg-[#E76F51] transition"
               >
                 YouTube
