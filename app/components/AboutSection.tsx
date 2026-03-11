@@ -134,23 +134,7 @@ export default function AboutSection() {
   clarity, and continuous growth.
 </p>
 
-            {/* Stats */}
-            <div className="flex flex-wrap gap-4 md:gap-8 pt-4 md:pt-6">
-              <div>
-                <h3 className="text-xl md:text-2xl font-bold text-[#F4A261]">5+</h3>
-                <p className="text-xs md:text-sm text-gray-600">Years Teaching</p>
-              </div>
-
-              <div>
-                <h3 className="text-xl md:text-2xl font-bold text-[#F4A261]">1000+</h3>
-                <p className="text-xs md:text-sm text-gray-600">Students Guided</p>
-              </div>
-
-              <div>
-                <h3 className="text-xl md:text-2xl font-bold text-[#F4A261]">100%</h3>
-                <p className="text-xs md:text-sm text-gray-600">Dedication</p>
-              </div>
-            </div>
+            
 
           </div>
         </div>
