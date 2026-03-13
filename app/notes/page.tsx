@@ -20,6 +20,7 @@ interface Note {
   description: string;
   price: number;
   pdfUrl: string;
+  syllabus: string;
 }
 
 declare global {
@@ -96,13 +97,15 @@ export default function NotesPage() {
       const data: Note[] = snapshot.docs.map((docItem) => {
 
         const d = docItem.data();
+        console.log("Firestore data:",d);
 
         return {
           id: docItem.id,
           name: d.name || "No name",
-          description: d.description || "",
+          description: (d.description  || "").trim(),
           price: d.price || 0,
-          pdfUrl: d.pdfUrl || ""
+          pdfUrl: d.pdfUrl || "",
+          syllabus: d.syllabus || ""
         };
 
       });
@@ -250,9 +253,20 @@ export default function NotesPage() {
               </h2>
 
               <p className="text-sm text-gray-800 mb-3 md:mb-4 min-h-[3rem]">
-                {note.description || "No description available."}
+                {note.description}
               </p>
-
+              <button
+                onClick={() => {
+                  setPdfUrl(note.syllabus);
+                  setPdfLoading(true);
+                }}
+                className="w-full mt-2 px-4 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-100"
+              >
+                View Syllabus
+              </button>
+               <span className="text-gray-400 line-through text-lg">
+      ₹199
+    </span>
               <p className="font-bold mb-3 md:mb-4 text-base md:text-lg">
                 ₹{note.price}
               </p>

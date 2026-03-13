@@ -96,7 +96,7 @@ export default function Footer() {
       <div className="text-center mt-6 md:mt-10 text-xs md:text-sm text-gray-600">
        Made with ❤️ By Arshi Husain | &copy; {new Date().getFullYear()} All rights reserved.
        <br />
-       Designed and Developed by <a href="https://www.linkedin.com/in/khushi-bhaskar-b00586324/" className="text-[#5f442e] hover:underline">Khushi Bhaskar [DevSource]</a>
+       Designed and Developed by <a href="https://www.linkedin.com/in/khushi-bhaskar-b00586324/" target="_blank" className="text-[#5f442e] hover:underline">Khushi Bhaskar [DevSource]</a>
       </div>
     </footer>
   );

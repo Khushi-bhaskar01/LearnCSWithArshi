@@ -24,6 +24,10 @@ const testimonials = [
     image: "/4.jpeg", // Screenshot of YouTube comment
     alt: "Student testimonial 4",
   },
+  {
+    image: "/5.jpeg", // Screenshot of YouTube comment
+    alt: "Student testimonial 5",
+  },
 ];
 
 export default function Testimonials() {
