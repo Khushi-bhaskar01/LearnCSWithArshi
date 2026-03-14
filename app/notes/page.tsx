@@ -17,7 +17,7 @@ import { onAuthStateChanged } from "firebase/auth";
 interface Note {
   id: string;
   name: string;
-  description: string;
+  description: string[];
   price: number;
   pdfUrl: string;
   syllabus: string;
@@ -97,12 +97,12 @@ export default function NotesPage() {
       const data: Note[] = snapshot.docs.map((docItem) => {
 
         const d = docItem.data();
-        console.log("Firestore data:",d);
+  
 
         return {
           id: docItem.id,
           name: d.name || "No name",
-          description: (d.description  || "").trim(),
+          description: d.description  || [],
           price: d.price || 0,
           pdfUrl: d.pdfUrl || "",
           syllabus: d.syllabus || ""
@@ -252,9 +252,11 @@ export default function NotesPage() {
                 {note.name}
               </h2>
 
-              <p className="text-sm text-gray-800 mb-3 md:mb-4 min-h-[3rem]">
-                {note.description}
-              </p>
+              <div className="text-sm text-gray-800 mb-3 md:mb-4">
+                {note.description.map((line, index) => (
+                   <p key={index}>{line}</p>
+                 ))}
+              </div>
               <button
                 onClick={() => {
                   setPdfUrl(note.syllabus);
@@ -265,10 +267,10 @@ export default function NotesPage() {
                 View Syllabus
               </button>
                <span className="text-gray-400 line-through text-lg">
-      ₹199
-    </span>
+                  ₹199
+                </span>
               <p className="font-bold mb-3 md:mb-4 text-base md:text-lg">
-                ₹{note.price}
+                ₹{note.price}  <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">LIMITED TIME</span>
               </p>
 
               <button

@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
-
+import { FaYoutube, FaInstagram, FaLinkedin } from "react-icons/fa";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
@@ -78,16 +78,36 @@ export default function Footer() {
               <p>Location: India</p>
             </div>
 
-            <div className="flex gap-3 md:gap-4 mt-3 md:mt-4">
-              <a
-                href="https://www.youtube.com/@learncswitharshi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#F4A261] text-white px-3 md:px-4 py-2 rounded-full text-xs hover:bg-[#E76F51] transition"
-              >
-                YouTube
-              </a>
-            </div>
+            <div className="flex gap-4 mt-4">
+
+  <a
+    href="https://www.youtube.com/@learncswitharshi"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md hover:shadow-lg transition transform hover:-translate-y-1"
+  >
+    <FaYoutube className="text-red-500 text-lg group-hover:scale-110 transition" />
+  </a>
+
+  <a
+    href="https://www.instagram.com/learncswitharshi"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md hover:shadow-lg transition transform hover:-translate-y-1"
+  >
+    <FaInstagram className="text-pink-500 text-lg group-hover:scale-110 transition" />
+  </a>
+
+  <a
+    href="https://www.linkedin.com/in/dr-arshi-h-281523280/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md hover:shadow-lg transition transform hover:-translate-y-1"
+  >
+    <FaLinkedin className="text-blue-500 text-lg group-hover:scale-110 transition" />
+  </a>
+
+</div>
           </div>
 
         </div>

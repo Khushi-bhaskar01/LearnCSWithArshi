@@ -1,6 +1,6 @@
 "use client";
 import Navbar from "../components/Navbar";
-import { useEffect, useRef, useState } from "react";
+import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Link from "next/link";
 import { collection, getDocs } from "firebase/firestore";
@@ -9,7 +9,7 @@ import { db } from "@/lib/firebaseClient";
 interface Subject {
   id: string;
   name: string;
-  description: string;
+  description: string | string[];
   price: number;
   pdfUrl: string;
 }
@@ -92,11 +92,16 @@ export default function CoursesPage() {
               {subject.name}
             </h2>
 
-            {subject.description && (
-              <p className="text-sm text-gray-800 mb-4 md:mb-6">
-                {subject.description}
-              </p>
-            )}
+            <div className="text-sm text-gray-800 mb-4 md:mb-6 space-y-1">
+  {(Array.isArray(subject.description)
+    ? subject.description
+    : subject.description.split("\n")
+  ).map((line: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined, index: Key | null | undefined) => (
+    <p key={index} className="flex items-center gap-2">
+      {line}
+    </p>
+  ))}
+</div>
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <span className="text-lg font-semibold">
