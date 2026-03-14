@@ -1,32 +1,3 @@
-// export default function YouTubeSection() {
-//   return (
-//     <section className="py-20 px-6 md:px-16 bg-[#FFF4EC]">
-//       <div className="max-w-6xl mx-auto text-center">
-
-//         <h2 className="text-3xl font-bold text-[#3A3A3A]">
-//           Video Lectures
-//         </h2>
-
-//         <p className="mt-4 text-[#5C5C5C]">
-//           Access structured video explanations directly from Dr Arshi’s YouTube channel.
-//         </p>
-
-//         <div className="mt-10 rounded-3xl overflow-hidden shadow-xl">
-//           <iframe
-//             width="100%"
-//             height="500"
-//             src="https://www.youtube.com/embed/QrocYDGm4HE?si=uG-V4e9n1WoYCSac"
-//             title="YouTube video"
-//             allowFullScreen
-//             className="rounded-3xl"
-//           />
-          
-//         </div>
-
-//       </div>
-//     </section>
-//   );
-// }
 
 "use client";
 
@@ -40,11 +11,10 @@ type Video = {
 };
 
 export default function YouTubeSection(): JSX.Element {
-  // 👇 Only add MOST VIEWED / highlighted videos here
   const featuredVideos: Video[] = [
-    { id: "QrocYDGm4HE", title: "Introduction to TOC", views: "80K views" },
-    { id: "gUO8e4zIImo", title: "TOC CFG || CFL", views: "57K views" },
-    { id: "ZnxYVZXsoBc", title: "Regular Expressions in Automata Theory", views: "55K views" },
+    { id: "QrocYDGm4HE", title: "Introduction to TOC", views: "87K views" },
+    { id: "gUO8e4zIImo", title: "TOC CFG || CFL", views: "58K views" },
+    { id: "ZnxYVZXsoBc", title: "Regular Expressions in Automata Theory", views: "59K views" },
     { id: "csLUbPXj7Bg", title: "Push Down Automata", views: "51K views" },
   ];
 
