@@ -13,6 +13,9 @@ import {
 } from "firebase/firestore";
 
 import { onAuthStateChanged } from "firebase/auth";
+import dynamic from "next/dynamic";
+
+const PdfViewer = dynamic(() => import("./PdfViewer"), { ssr: false });
 
 interface Note {
   id: string;
@@ -85,6 +88,17 @@ export default function NotesPage() {
 
     return () => unsubscribe();
 
+  }, []);
+
+  /* PREVENT RIGHT CLICK TO DISABLE SAVE */
+  useEffect(() => {
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+    };
+    document.addEventListener("contextmenu", handleContextMenu);
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+    };
   }, []);
 
   /* FETCH SUBJECTS */
@@ -225,7 +239,10 @@ export default function NotesPage() {
 
   return (
 
-    <div className="max-w-7xl mx-auto mt-24 md:mt-30 px-4 md:px-6">
+    <div 
+      className="max-w-7xl mx-auto mt-24 md:mt-30 px-4 md:px-6"
+      onContextMenu={(e) => e.preventDefault()}
+    >
 
       <Navbar />
 
@@ -318,41 +335,12 @@ export default function NotesPage() {
           </div>
 
           {/* PDF Viewer Container */}
-          <div className="relative bg-white rounded-xl shadow-xl overflow-hidden pdf-viewer-container">
-            {pdfLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
-                <div className="text-center">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#F4A261] mx-auto mb-4"></div>
-                  <p className="text-gray-600">Loading PDF...</p>
-                </div>
-              </div>
-            )}
-            {/* choose embed for mobile so it stays in-page instead of opening a new tab */}
-            {isMobile ? (
-              <embed
-                src={pdfUrl + "#zoom=100&toolbar=0&navpanes=0"}
-                type="application/pdf"
-                className="pdf-iframe w-full border-0"
-                style={{
-                  height: 'calc(100vh - 350px)',
-                  minHeight: '500px',
-                  maxHeight: '900px'
-                }}
-              />
-            ) : (
-              <iframe
-                src={pdfUrl + "#zoom=100&toolbar=0&navpanes=0"}
-                className="pdf-iframe w-full border-0"
-                style={{
-                  height: 'calc(100vh - 350px)',
-                  minHeight: '500px',
-                  maxHeight: '900px'
-                }}
-                allowFullScreen
-                onLoad={() => setPdfLoading(false)}
-              />
-            )}
-          </div>
+          {pdfUrl && (
+            <PdfViewer 
+              pdfUrl={pdfUrl} 
+              isMobile={isMobile} 
+            />
+          )}
 
           {/* Mobile Instructions */}
           <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200 md:hidden">

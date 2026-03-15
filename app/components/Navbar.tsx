@@ -20,12 +20,10 @@ export default function Navbar() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(navRef.current, {
-        y: -80,
-        opacity: 0,
-        duration: 1,
-        ease: "power4.out",
-      });
+      gsap.fromTo(navRef.current, 
+        { y: -80, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, ease: "power4.out" }
+      );
     });
 
     const handleScroll = () => setScrolled(window.scrollY > 20);
