@@ -86,7 +86,7 @@ export default function Navbar() {
         }`}
       >
         <Link href="/" className="text-lg font-semibold">
-          <span className="text-[#F4A261]">Dr.</span> Arshi Husain
+          <span className="text-[#F4A261]">Learn CS With</span> Arshi 
         </Link>
 
         <div className="hidden md:flex gap-10 items-center">
