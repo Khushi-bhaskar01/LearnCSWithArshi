@@ -90,7 +90,7 @@ export default function Footer() {
   </a>
 
   <a
-    href="https://www.instagram.com/learncswitharshi"
+    href="https://www.instagram.com/arshi.decodes"
     target="_blank"
     rel="noopener noreferrer"
     className="group flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md hover:shadow-lg transition transform hover:-translate-y-1"
