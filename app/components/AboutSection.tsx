@@ -6,9 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
-// @ts-expect-error - swiper CSS imports are valid
 import "swiper/css";
-// @ts-expect-error - swiper CSS imports are valid
 import "swiper/css/effect-fade";
 
 gsap.registerPlugin(ScrollTrigger);
