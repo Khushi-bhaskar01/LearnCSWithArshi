@@ -48,3 +48,23 @@ html, body {
 .pdf-viewer-container::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
 }
+
+/* Custom Scrollbar Utility */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #fdf2e9;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #f4a261;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #e76f51;
+}
+

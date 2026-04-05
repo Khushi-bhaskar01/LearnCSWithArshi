@@ -6,7 +6,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
+// @ts-expect-error - swiper CSS imports are valid
 import "swiper/css";
+// @ts-expect-error - swiper CSS imports are valid
 import "swiper/css/effect-fade";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -59,7 +61,7 @@ export default function AboutSection() {
     >
       {/* Background Glow */}
       <div className="absolute -top-10 md:-top-20 -left-10 md:-left-20 w-64 h-60 md:w-96 md:h-90 bg-[#F4A261] opacity-20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] md:w-[400px] md:h-[400px] bg-[#E76F51] opacity-20 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-75 h-75 md:w-100 md:h-100 bg-[#E76F51] opacity-20 rounded-full blur-3xl"></div>
 
       {/* Glass Card */}
       <div className="relative max-w-[95%] md:max-w-[90%] mx-auto backdrop-blur-2xl bg-white/0 border border-white/40 shadow-[0_20px_60px_rgba(0,0,0,0.1)] rounded-3xl p-4 md:p-6 lg:p-8">
@@ -73,7 +75,7 @@ export default function AboutSection() {
           {/* IMAGE SIDE */}
           <div
             ref={imageRef}
-            className="relative w-full max-w-[250px] md:max-w-[300px] lg:max-w-[340px] aspect-[4/5] rounded-3xl overflow-hidden shadow-xl mx-auto"
+            className="relative w-full max-w-62.5 md:max-w-75 lg:max-w-85 aspect-4/5 rounded-3xl overflow-hidden shadow-xl mx-auto"
           >
             <Swiper
               modules={[Autoplay, EffectFade]}
@@ -103,7 +105,7 @@ export default function AboutSection() {
             </Swiper>
 
             {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+            <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent"></div>
           </div>
 
           {/* TEXT SIDE */}

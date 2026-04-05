@@ -95,7 +95,7 @@ export default function Hero() {
           >
             <Link href="/about">
               <button className="bg-[#F4A261] text-white px-6 py-3 rounded-full shadow-lg hover:bg-[#E76F51] transition duration-300 hover:scale-105 text-sm md:text-base">
-                About Me
+                About
               </button>
             </Link>
 
