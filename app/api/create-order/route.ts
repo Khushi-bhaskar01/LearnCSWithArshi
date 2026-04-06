@@ -6,8 +6,32 @@ const razorpay = new Razorpay({
   key_secret: process.env.RAZORPAY_KEY_SECRET!,
 });
 
+// Allowed domains for payment requests
+const ALLOWED_DOMAINS = process.env.ALLOWED_DOMAINS
+  ? process.env.ALLOWED_DOMAINS.split(',')
+  : ['learncswitharshi.com'];
+
 export async function POST(req: Request) {
   try {
+    // Security check: Validate request origin
+    const origin = req.headers.get('origin');
+    const referer = req.headers.get('referer');
+
+    const isOriginAllowed = origin && ALLOWED_DOMAINS.some(domain =>
+      origin.includes(domain)
+    );
+    const isRefererAllowed = referer && ALLOWED_DOMAINS.some(domain =>
+      referer.includes(domain)
+    );
+
+    if (!isOriginAllowed && !isRefererAllowed) {
+      console.warn('Payment request blocked: Unauthorized domain', { origin, referer });
+      return NextResponse.json(
+        { error: "Payments are only allowed from authorized domains" },
+        { status: 403 }
+      );
+    }
+
     const { amount } = await req.json();
 
     if (!amount || amount <= 0) {

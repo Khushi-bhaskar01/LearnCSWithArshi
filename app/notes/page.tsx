@@ -45,6 +45,10 @@ export default function NotesPage() {
   const [purchasedNotes, setPurchasedNotes] = useState<string[]>([]);
   const [user, setUser] = useState<any>(null);
 
+  // Domain security: Only allow payments from official domain
+  const ALLOWED_DOMAIN = process.env.NEXT_PUBLIC_ALLOWED_DOMAIN || "learncswitharshi.com";
+  const isPaymentAllowed = typeof window !== "undefined" && window.location.hostname === ALLOWED_DOMAIN;
+
   useEffect(() => {
 
     const script = document.createElement("script");
@@ -153,6 +157,12 @@ export default function NotesPage() {
 
     if (!user) {
       alert("Please login first");
+      return;
+    }
+
+    // Security check: Only allow payments from the official domain
+    if (!isPaymentAllowed) {
+      alert("Payments are only available on the official website (learncswitharshi.com)");
       return;
     }
 
@@ -296,9 +306,12 @@ export default function NotesPage() {
                     ? handlePreview(note.pdfUrl, note.id)
                     : handlePayment(note)
                 }
+                disabled={!isPaymentAllowed && !isUnlocked}
                 className={`w-full px-4 py-2 md:py-3 rounded-xl text-white text-sm md:text-base ${
                   isUnlocked
                     ? "bg-green-600 hover:bg-green-700"
+                    : !isPaymentAllowed
+                    ? "bg-gray-400 cursor-not-allowed"
                     : "bg-gradient-to-r from-[#F4A261] to-[#E76F51]"
                 }`}
               >
@@ -307,9 +320,17 @@ export default function NotesPage() {
                   ? "Loading..."
                   : isUnlocked
                   ? "Preview Notes"
+                  : !isPaymentAllowed
+                  ? "Payments Unavailable"
                   : "Buy Now"}
 
               </button>
+
+              {!isPaymentAllowed && !isUnlocked && (
+                <p className="text-red-500 text-xs mt-2 text-center">
+                  Payments are only available on the official website
+                </p>
+              )}
 
             </div>
 
