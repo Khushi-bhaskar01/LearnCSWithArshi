@@ -36,6 +36,7 @@ export default function NotesPage() {
 
   const [notes, setNotes] = useState<Note[]>([]);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
+  const [openNoteName, setOpenNoteName] = useState<string>("");
   const [loadingId, setLoadingId] = useState<string | null>(null);
   const [pdfLoading, setPdfLoading] = useState(false);
 
@@ -214,7 +215,7 @@ export default function NotesPage() {
 
   /* PREVIEW */
 
-  const handlePreview = async (fileUrl: string, noteId: string) => {
+  const handlePreview = async (fileUrl: string, noteId: string, name: string) => {
 
     setLoadingId(noteId);
     setPdfLoading(true);
@@ -239,6 +240,7 @@ export default function NotesPage() {
 
     }
 
+    setOpenNoteName(name);
     setPdfUrl(fileUrl);
     setLoadingId(null);
     setPdfLoading(false);
@@ -286,6 +288,7 @@ export default function NotesPage() {
               </div>
               <button
                 onClick={() => {
+                  setOpenNoteName(note.name + " Syllabus");
                   setPdfUrl(note.syllabus);
                   setPdfLoading(true);
                 }}
@@ -303,7 +306,7 @@ export default function NotesPage() {
               <button
                 onClick={() =>
                   isUnlocked
-                    ? handlePreview(note.pdfUrl, note.id)
+                    ? handlePreview(note.pdfUrl, note.id, note.name)
                     : handlePayment(note)
                 }
                 disabled={!isPaymentAllowed && !isUnlocked}
@@ -344,10 +347,6 @@ export default function NotesPage() {
 
         <div className="mt-12 md:mt-16">
 
-      {pdfUrl && (
-
-        <div className="mt-12 md:mt-16">
-
           {/* PDF Title */}
           <div className="mb-4">
             <h3 className="text-lg md:text-xl font-semibold text-[#F4A261]">
@@ -356,12 +355,11 @@ export default function NotesPage() {
           </div>
 
           {/* PDF Viewer Container */}
-          {pdfUrl && (
-            <PdfViewer 
-              pdfUrl={pdfUrl} 
-              isMobile={isMobile} 
-            />
-          )}
+          <PdfViewer
+            pdfUrl={pdfUrl}
+            isMobile={isMobile}
+            noteName={openNoteName}
+          />
 
           {/* Mobile Instructions */}
           <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200 md:hidden">
@@ -376,10 +374,6 @@ export default function NotesPage() {
               💡 <strong>Desktop Tips:</strong> Use zoom controls above or Ctrl+Scroll in the PDF.
             </p>
           </div>
-
-        </div>
-
-      )}
 
         </div>
 
