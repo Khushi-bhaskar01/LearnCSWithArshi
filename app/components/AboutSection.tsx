@@ -6,8 +6,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-fade";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -73,7 +71,7 @@ export default function AboutSection() {
           {/* IMAGE SIDE */}
           <div
             ref={imageRef}
-            className="relative w-full max-w-62.5 md:max-w-75 lg:max-w-85 aspect-4/5 rounded-3xl overflow-hidden shadow-xl mx-auto"
+            className="relative w-full max-w-[420px] md:max-w-[480px] lg:max-w-[520px] h-[min(70vh,520px)] aspect-[4/5] rounded-3xl overflow-hidden shadow-xl mx-auto"
           >
             <Swiper
               modules={[Autoplay, EffectFade]}
