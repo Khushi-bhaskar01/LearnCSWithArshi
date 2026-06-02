@@ -182,6 +182,7 @@ export default function AboutMam() {
           <div className="max-h-[350px] overflow-y-auto pr-2 custom-scrollbar">
             <div className="grid gap-2">
               {[
+                { y: '2026', t: "A Machine Learning Based Framework for Sports' Result Prediction", j: "INDIACom", l: "https://ieeexplore.ieee.org/document/11526168" },
                 { y: '2024', t: "A Revolutionary Approach to COVID 19 Detection Using Transformer", j: "Journal of Propulsion Technology", l: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lNuMr-wAAAAJ&citation_for_view=lNuMr-wAAAAJ:UeHWp8X0CEIC" },
                 { y: '2023', t: "RES-KELM fusion model for COVID-19 X-ray classification", j: "Journal of Intelligent Systems", l: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lNuMr-wAAAAJ&citation_for_view=lNuMr-wAAAAJ:9yKSN-GCB0IC" },
                 { y: '2023', t: "Optimized deterministic multikernel extreme learning machine", j: "ICIICV", l: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lNuMr-wAAAAJ&citation_for_view=lNuMr-wAAAAJ:d1gkVwhDpl0C" },
