@@ -1,11 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { db } from "@/lib/firebaseClient";
-import { collection, addDoc, serverTimestamp, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { Trash2, Edit2, Plus, Loader2, X } from "lucide-react";
 
-export default function SubjectClient({ initialSubjects }: { initialSubjects: any[] }) {
+type Subject = {
+  id: string;
+  name?: string;
+  title?: string;
+  description?: string[] | string;
+  imageUrl?: string;
+  price?: number;
+  syllabus?: string;
+  pdfUrl?: string;
+  [key: string]: unknown;
+};
+
+export default function SubjectClient({ initialSubjects }: { initialSubjects: Subject[] }) {
   const [subjects, setSubjects] = useState(initialSubjects);
   const [isSaving, setIsSaving] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -46,6 +56,17 @@ export default function SubjectClient({ initialSubjects }: { initialSubjects: an
     return result.publicUrl as string;
   };
 
+  const saveSubject = async (subject: Record<string, unknown>, id?: string) => {
+    const response = await fetch("/api/admin-subjects", {
+      method: id ? "PUT" : "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(id ? { ...subject, id } : subject),
+    });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || "Unable to save subject");
+    return result.id as string | undefined;
+  };
+
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!title) return alert("Title is required.");
@@ -69,7 +90,7 @@ export default function SubjectClient({ initialSubjects }: { initialSubjects: an
       // Process description into array (since frontend expects array)
       const descArray = description.split('\n').filter(line => line.trim() !== '');
 
-      const subjectData: any = {
+      const subjectData = {
         name: title,
         description: descArray,
         imageUrl,
@@ -79,23 +100,20 @@ export default function SubjectClient({ initialSubjects }: { initialSubjects: an
       };
 
       if (editId) {
-        const docRef = doc(db, "subjects", editId);
-        await updateDoc(docRef, subjectData);
+        await saveSubject(subjectData, editId);
         setSubjects(subjects.map(s => s.id === editId ? { ...s, ...subjectData } : s));
         alert("Subject Updated Successfully");
       } else {
-        const docRef = await addDoc(collection(db, "subjects"), {
-          ...subjectData,
-          createdAt: serverTimestamp(),
-        });
-        setSubjects([{ id: docRef.id, ...subjectData }, ...subjects]);
+        const id = await saveSubject(subjectData);
+        if (!id) throw new Error("Subject was saved but no ID was returned");
+        setSubjects([{ id, ...subjectData }, ...subjects]);
         alert("Subject Created Successfully");
       }
 
       resetForm();
-    } catch (error: any) {
+    } catch (error) {
       console.error(error);
-      alert(error.message || "An error occurred");
+      alert(error instanceof Error ? error.message : "An error occurred");
     } finally {
       setIsSaving(false);
     }
@@ -104,15 +122,21 @@ export default function SubjectClient({ initialSubjects }: { initialSubjects: an
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this subject/course?")) return;
     try {
-      await deleteDoc(doc(db, "subjects", id));
+      const response = await fetch("/api/admin-subjects", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Unable to delete subject");
       setSubjects(subjects.filter(s => s.id !== id));
     } catch (error) {
       console.error(error);
-      alert("Failed to delete subject");
+      alert(error instanceof Error ? error.message : "Failed to delete subject");
     }
   };
 
-  const openEdit = (subject: any) => {
+  const openEdit = (subject: Subject) => {
     setEditId(subject.id);
     setTitle(subject.name || subject.title || "");
     
