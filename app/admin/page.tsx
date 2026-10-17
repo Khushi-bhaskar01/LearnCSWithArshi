@@ -1,16 +1,18 @@
 import { adminDb } from "@/lib/firebaseAdmin";
-import { CreditCard, FileText, BookOpen, DollarSign } from "lucide-react";
+import { CreditCard, FileText, BookOpen } from "lucide-react";
 import Link from "next/link";
 
 export default async function AdminDashboard() {
   
   // We'll fetch basic stats
-  const pdfsSnapshot = await adminDb.collection("pdfs").count().get();
-  const subjectsSnapshot = await adminDb.collection("subjects").count().get();
+  const subjectsSnapshot = await adminDb.collection("subjects").get();
   const purchasesSnapshot = await adminDb.collection("purchases").count().get();
   
-  const totalPdfs = pdfsSnapshot.data().count;
-  const totalSubjects = subjectsSnapshot.data().count;
+  const totalPdfs = subjectsSnapshot.docs.reduce((count, subject) => {
+    const data = subject.data();
+    return count + Number(Boolean(data.pdfUrl)) + Number(Boolean(data.syllabus));
+  }, 0);
+  const totalSubjects = subjectsSnapshot.size;
   const totalPurchases = purchasesSnapshot.data().count;
 
   return (
@@ -24,7 +26,7 @@ export default async function AdminDashboard() {
           title="Total PDFs" 
           value={totalPdfs} 
           icon={<FileText size={24} className="text-[#E76F51]" />} 
-          href="/admin/pdfs"
+          href="/admin/subjects"
         />
         <StatCard 
           title="Total Subjects" 

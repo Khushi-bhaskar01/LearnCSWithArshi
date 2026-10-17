@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { db } from "@/lib/firebaseClient";
-import { supabase } from "@/lib/supabase";
 import { collection, addDoc, serverTimestamp, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { Trash2, Edit2, Plus, Loader2, X } from "lucide-react";
 
@@ -32,6 +31,21 @@ export default function SubjectClient({ initialSubjects }: { initialSubjects: an
     setShowModal(false);
   };
 
+  const uploadPdf = async (file: File, category: "syllabus" | "paid") => {
+    const formData = new FormData();
+    formData.set("file", file);
+    formData.set("category", category);
+
+    const response = await fetch("/api/admin-upload", {
+      method: "POST",
+      body: formData,
+    });
+    const result = await response.json();
+
+    if (!response.ok) throw new Error(result.error || "PDF upload failed");
+    return result.publicUrl as string;
+  };
+
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!title) return alert("Title is required.");
@@ -44,20 +58,12 @@ export default function SubjectClient({ initialSubjects }: { initialSubjects: an
 
       // Upload syllabus if selected
       if (syllabusFile) {
-        const fileName = `syllabus_${Date.now()}_${syllabusFile.name}`;
-        const { error } = await supabase.storage.from("pdf").upload(fileName, syllabusFile);
-        if (error) throw error;
-        const { data } = supabase.storage.from("pdf").getPublicUrl(fileName);
-        finalSyllabusUrl = data.publicUrl;
+        finalSyllabusUrl = await uploadPdf(syllabusFile, "syllabus");
       }
 
       // Upload paid PDF if selected
       if (pdfFile) {
-        const fileName = `paid_${Date.now()}_${pdfFile.name}`;
-        const { error } = await supabase.storage.from("pdf").upload(fileName, pdfFile);
-        if (error) throw error;
-        const { data } = supabase.storage.from("pdf").getPublicUrl(fileName);
-        finalPdfUrl = data.publicUrl;
+        finalPdfUrl = await uploadPdf(pdfFile, "paid");
       }
 
       // Process description into array (since frontend expects array)
